@@ -1,0 +1,12 @@
+
+#calculadora .num {
+    display: flex;
+    width: 40px;
+    height: 40px;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid blue; /* Borde azul */
+    font-size: 20px;
+    font-weight: bold;
+    background-color: lightblue; /* Color de fondo opcional */
+}
