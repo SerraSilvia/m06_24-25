@@ -22,7 +22,7 @@ cambiaImagen();
 
 function anadeElementos(){
     let nuevoP = document.getElementById("contenedor");
-    nuevoP.
+    
 
 }
 

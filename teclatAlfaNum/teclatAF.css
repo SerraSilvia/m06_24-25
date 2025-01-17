@@ -1,0 +1,44 @@
+div {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+p {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: cornflowerblue;
+    height: 100px;
+    width: 100px;
+    font-size: 45px;
+    color: black;
+    margin: 25px;
+    border-radius: 10px;
+    box-shadow: 0 0 0 10px lightgreen;
+}
+
+p:hover {
+    background-color: aquamarine;
+    color: darkviolet;
+    width: 150px;
+    width: 150px;
+}
+
+.par {
+    background-color: gold;
+}
+
+.impar {
+    background-color: coral;
+}
+.contenedor_abc{
+    float: left;
+}
+
+.contenedor{
+    float: right;
+}
