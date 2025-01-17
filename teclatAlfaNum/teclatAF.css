@@ -1,44 +1,83 @@
-div {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    width: 500px;
-    margin-left: auto;
-    margin-right: auto;
+
+
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
 }
 
-p {
+/* Contenedor del teclado */
+#tecladoAF {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 900px;
+}
+
+/* Contenedor de letras */
+#contenedorABC {
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    gap: 10px;
+    width: 65%;
+}
+
+/* Contenedor de números */
+#contenedor {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    width: 30%;
+}
+
+/* Estilo de las teclas */
+.tecla, p {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: cornflowerblue;
-    height: 100px;
-    width: 100px;
-    font-size: 45px;
-    color: black;
-    margin: 25px;
-    border-radius: 10px;
-    box-shadow: 0 0 0 10px lightgreen;
+    background-color: #ddd;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 15px;
+    text-align: center;
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: bold;
+    transition: background-color 0.3s;
 }
 
-p:hover {
-    background-color: aquamarine;
-    color: darkviolet;
-    width: 150px;
-    width: 150px;
+.tecla:hover, p:hover {
+    background-color: #bbb;
+}
+
+/* Estilo de los números */
+.impar {
+    background-color: #ffeb3b; /* Amarillo para números impares */
 }
 
 .par {
-    background-color: gold;
+    background-color: #8bc34a; /* Verde para números pares */
 }
 
-.impar {
-    background-color: coral;
-}
-.contenedor_abc{
-    float: left;
+.multiplo {
+    background-color: #2196f3; /* Azul para múltiplos de 3 */
 }
 
-.contenedor{
-    float: right;
+/* Estilo del contenedor */
+#contenedorABC, #contenedor {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+    #tecladoAF {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    #contenedorABC, #contenedor {
+        width: 100%;
+    }
 }

@@ -1,35 +1,27 @@
 function mostrarTecladoNums() {
 
-    let numUsuario = validarCasillas();
-
     let div = document.getElementById("contenedor");
 
-    crearCasillas(numUsuario, div);
+    crearCasillas(div);
 }
 
 function mostrarTecladoABC() {
-    let letra = String.fromCharCode(ascii_code);
+
+    let contenedorABC = document.getElementById("contenedorABC");
+    
 
     for (let letra = 65; letra <= 90; letra++) {
-        let teclaLetra = document.createElement("div");
-        teclaLetra.classList.add("teclaLetra");
-        teclaLetra.textContent = letra;
-        contenedorABC.appendChild(teclaLetra);
+        let tecla = document.createElement("div");
+        tecla.classList.add("tecla");
+        tecla.textContent = String.fromCharCode(letra);
+        contenedorABC.appendChild(tecla);
     }
 }
 
-function validarCasillas() {
-    let numUsuario = parseInt(prompt("Dime un valor inicial entre 1 i 30:"));
-    if (numUsuario < 1 || numUsuario > 30) {
-        alert("El numero no puede ser mayor a 30 ni menor de 1!");
-    }
 
-    return numUsuario;
-}
+function crearCasillas(div) {
 
-function crearCasillas(numUsuario, div) {
-
-    for (let num = 1; num <= numUsuario.valueOf(numUsuario); num++) {
+    for (let num = 1; num <= 9; num++) {
         let cuadro = document.createElement("p");
         console.log(num % 2);
         let numero = document.createTextNode(num);
