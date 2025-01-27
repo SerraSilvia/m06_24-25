@@ -26,8 +26,14 @@ function eliminaCarracterPosicion(string, number) {
     let longitud = string.length;
 
     if (longitud < number) {
-        string = string.slice(0, number) + string.slice(number + 1);
+        for (let i in string) {
+            if (string[i] == number) {
+                string[i].replace(' ');
+            }
+        }
 
+        /*string = string.slice(0, number) + string.slice(number + 1);
+*/
     }
     console.log(string);
     document.querySelector("#longitudPalabra").textContent += string;
