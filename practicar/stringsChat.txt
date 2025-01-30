@@ -1,0 +1,146 @@
+// 1. Verifica si un string termina con un carácter específico
+function verificaTerminaCon(str, char) {
+  if (str.endsWith(char)) {
+    return str;
+  }
+  return str + char;
+}
+console.log(verificaTerminaCon("comida", "a")); // "comida"
+console.log(verificaTerminaCon("coche", "e"));  // "coche"
+console.log(verificaTerminaCon("casa", "o"));   // "casao"
+
+// 2. Elimina las vocales de un string
+function eliminaVocales(str) {
+  return str.replace(/[aeiou]/gi, "");
+}
+console.log(eliminaVocales("murcielago")); // "mrc lg"
+console.log(eliminaVocales("rinoceronte")); // "rnc rnt"
+
+// 3. Intercambia el primer y último carácter
+function intercambiaCaracteres(str) {
+  if (str.length === 0) return str;
+  if (str.length === 1) return str;
+  return str.charAt(str.length - 1) + str.substring(1, str.length - 1) + str.charAt(0);
+}
+console.log(intercambiaCaracteres("murcielago")); // "gurcielagm"
+console.log(intercambiaCaracteres("hola"));       // "aolh"
+
+// 4. Repite un string n veces
+function repiteString(str, n) {
+  return str.repeat(n);
+}
+console.log(repiteString("hola", 3)); // "holaholahola"
+
+// 5. Cuenta la cantidad de palabras en un string
+function cuentaPalabras(str) {
+  return str.trim().split(/\s+/).length;
+}
+console.log(cuentaPalabras("  Hola mundo esto es JavaScript  ")); // 5
+
+// 6. Reemplaza todas las ocurrencias de una palabra en un string
+function reemplazaPalabra(str, target, replacement) {
+  return str.split(target).join(replacement);
+}
+console.log(reemplazaPalabra("La casa es azul. Azul es su color favorito", "azul", "verde"));
+
+// 7. Comprueba si un string contiene un substring al principio
+function empiezaCon(str, sub) {
+  return str.startsWith(sub);
+}
+console.log(empiezaCon("Asteroide", "As")); // true
+console.log(empiezaCon("Cometa", "As"));   // false
+
+// 8. Devuelve el substring entre dos índices
+function subCadena(str, inicio, fin) {
+  return str.substring(inicio, fin);
+}
+console.log(subCadena("murcielago", 1, 4)); // "urc"
+
+// 9. Capitaliza la primera letra de cada palabra
+function capitalizaPalabras(str) {
+  return str
+    .toLowerCase()
+    .split(" ")
+    .map(palabra => palabra.charAt(0).toUpperCase() + palabra.slice(1))
+    .join(" ");
+}
+console.log(capitalizaPalabras("hola mundo esto es genial")); // "Hola Mundo Esto Es Genial"
+
+// 10. Elimina espacios al principio y al final del string
+function eliminaEspacios(str) {
+  return str.trim();
+}
+console.log(eliminaEspacios("   Hola mundo   ")); // "Hola mundo"
+
+// 11. Compara dos strings ignorando mayúsculas/minúsculas
+function comparaStrings(str1, str2) {
+  return str1.localeCompare(str2, undefined, { sensitivity: "base" }) === 0;
+}
+console.log(comparaStrings("Hola", "hola")); // true
+
+// 12. Invierte un string
+function invierteString(str) {
+  return str.split("").reverse().join("");
+}
+console.log(invierteString("murcielago")); // "ogaleicrum"
+
+// 13. Elimina un carácter en una posición dada
+function eliminaCaracter(str, pos) {
+  if (pos < 0 || pos >= str.length) return str;
+  return str.slice(0, pos) + str.slice(pos + 1);
+}
+console.log(eliminaCaracter("murcielago", 3)); // "mucielago"
+
+// 14. Cuenta las ocurrencias de un carácter
+function cuentaCaracter(str, char) {
+  return str.split(char).length - 1;
+}
+console.log(cuentaCaracter("murcielago", "o")); // 1
+
+// 15. Verifica si un string es un palíndromo
+function esPalindromo(str) {
+  const limpio = str.toLowerCase().replace(/[^a-z0-9]/g, "");
+  return limpio === limpio.split("").reverse().join("");
+}
+console.log(esPalindromo("Anita lava la tina")); // true
+
+// 16. Combina dos strings alternando caracteres
+function combinaStrings(str1, str2) {
+  let resultado = "";
+  const maxLength = Math.max(str1.length, str2.length);
+  for (let i = 0; i < maxLength; i++) {
+    if (i < str1.length) resultado += str1[i];
+    if (i < str2.length) resultado += str2[i];
+  }
+  return resultado;
+}
+console.log(combinaStrings("abc", "12345")); // "a1b2c345"
+
+// 17. Reemplaza la primera letra por mayúscula
+function capitalizaPrimera(str) {
+  if (str.length === 0) return str;
+  return str.charAt(0).toUpperCase() + str.slice(1);
+}
+console.log(capitalizaPrimera("hola")); // "Hola"
+
+// 18. Extrae las iniciales de un nombre completo
+function extraeIniciales(nombreCompleto) {
+  return nombreCompleto
+    .split(" ")
+    .map(nombre => nombre.charAt(0).toUpperCase())
+    .join("");
+}
+console.log(extraeIniciales("juan perez gonzalez")); // "JPG"
+
+// 19. Verifica si un string contiene solo números
+function esNumerico(str) {
+  return /^[0-9]+$/.test(str);
+}
+console.log(esNumerico("12345")); // true
+console.log(esNumerico("12a45")); // false
+
+// 20. Sustituye las letras por su código ASCII
+function convierteASCII(str) {
+  return str.split("").map(char => char.charCodeAt(0)).join(" ");
+}
+console.log(convierteASCII("Hola")); // "72 111 108 97"

@@ -1,0 +1,80 @@
+// Ejercicio 1.34: Hola Usuari
+// Descripción: Llegeix un nom d’usuari per l’entrada i imprimeix una frase de benvinguda.
+// Entrada: Un string amb un nom.
+// Sortida: Frase de benvinguda.
+// Joc de proves:
+// Entrada: "Jordi" | Sortida: "Bon dia Jordi"
+function saludarUsuari(nom) {
+  console.log(`Bon dia ${nom}`);
+}
+
+// Ejemplo de uso
+saludarUsuari("Jordi");
+
+//-------------------------------------------------------------
+
+// Ejercicio 1.36: Construeix la història
+// Descripción: Llegeix tres frases diferents i les concatena en una història coherent.
+// Entrada: Tres strings.
+// Sortida: Una història formada per les tres frases.
+// Joc de proves:
+// Entrada: "Hola soc en", "gat amb botes", "i vinc a cantar" |
+// Sortida: "Hola soc en gat amb botes i vinc a cantar"
+function construeixHistoria(frase1, frase2, frase3) {
+  const historia = `${frase1} ${frase2} ${frase3}`;
+  console.log(historia);
+}
+
+// Ejemplo de uso
+construeixHistoria("Hola soc en", "gat amb botes", "i vinc a cantar");
+
+//-------------------------------------------------------------
+
+// Ejercicio 4.16: Són iguals?
+// Descripción: Compara dos strings i indica si són iguals.
+// Entrada: Dos strings.
+// Sortida: "Són iguals" o "No són iguals".
+// Joc de proves:
+// Entrada: "Hola", "Adeu" | Sortida: "No són iguals"
+// Entrada: "Hola", "HolA" | Sortida: "No són iguals"
+function compararStrings(str1, str2) {
+  console.log(str1 === str2 ? "Són iguals" : "No són iguals");
+}
+
+// Ejemplo de uso
+compararStrings("Hola", "HolA");
+
+//-------------------------------------------------------------
+
+// Ejercicio 4.22: Palíndrom
+// Descripción: Comprova si una paraula és un palíndrom.
+// Entrada: Un string.
+// Sortida: "És un palíndrom" o "No és un palíndrom".
+// Joc de proves:
+// Entrada: "seves" | Sortida: "És un palíndrom"
+// Entrada: "array" | Sortida: "No és un palíndrom"
+function esPalindrom(paraula) {
+  const invers = paraula.split("").reverse().join("");
+  console.log(paraula === invers ? "És un palíndrom" : "No és un palíndrom");
+}
+
+// Ejemplo de uso
+esPalindrom("seves");
+
+//-------------------------------------------------------------
+
+// Ejercicio 4.23: Inverteix les paraules
+// Descripción: Llegeix diverses paraules i les escriu invertides.
+// Entrada: Diverses paraules.
+// Sortida: Cada paraula invertida en una línia.
+// Joc de proves:
+// Entrada: "hello", "bye" |
+// Sortida: "olleh", "eyb"
+function inverteixParaules(...paraules) {
+  paraules.forEach(paraula => {
+    console.log(paraula.split("").reverse().join(""));
+  });
+}
+
+// Ejemplo de uso
+inverteixParaules("hello", "bye");
