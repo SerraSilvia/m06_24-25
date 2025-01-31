@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ejercicios de Manipulación del DOM</title>
+  <style>
+    .container { margin: 20px; padding: 10px; border: 1px solid #ccc; }
+    .hidden { display: none; }
+    .highlight { background-color: yellow; }
+    .new-div { background-color: lightblue; padding: 10px; margin-top: 10px; }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <h1>Ejercicios DOM</h1>
+  <p id="parrafo1">Este es un párrafo de ejemplo.</p>
+  <p id="parrafo2">Otro párrafo que será manipulado.</p>
+  <ul id="lista">
+    <li>Elemento de lista 1</li>
+    <li>Elemento de lista 2</li>
+  </ul>
+  <button id="boton">Haz algo con el DOM</button>
+</div>
+
+<script>
+  // Ejercicio 1: Seleccionar un elemento por su ID
+  const parrafo1 = document.getElementById('parrafo1');
+  parrafo1.textContent = 'Texto modificado con getElementById';
+
+  // Ejercicio 2: Seleccionar varios elementos por su clase
+  const parrafos = document.querySelectorAll('p');
+  parrafos.forEach(parrafo => {
+    parrafo.style.color = 'red'; // Cambiar color de texto de todos los párrafos
+  });
+
+  // Ejercicio 3: Seleccionar el primer elemento con una clase
+  const primerParrafo = document.querySelector('.container p');
+  primerParrafo.style.fontSize = '20px';
+
+  // Ejercicio 4: Crear un nuevo nodo y agregarlo al DOM
+  const nuevoDiv = document.createElement('div');
+  nuevoDiv.className = 'new-div';
+  nuevoDiv.textContent = 'Soy un nuevo div añadido al DOM';
+  document.body.appendChild(nuevoDiv);
+
+  // Ejercicio 5: Modificar el contenido de un nodo
+  const parrafo2 = document.getElementById('parrafo2');
+  parrafo2.innerHTML = 'Contenido modificado con innerHTML';
+
+  // Ejercicio 6: Cambiar un atributo de un nodo
+  const boton = document.getElementById('boton');
+  boton.setAttribute('disabled', true); // Deshabilitar el botón
+
+  // Ejercicio 7: Eliminar un nodo del DOM
+  const lista = document.getElementById('lista');
+  lista.removeChild(lista.firstElementChild); // Eliminar el primer elemento de la lista
+
+  // Ejercicio 8: Modificar el estilo de un elemento
+  const divContainer = document.querySelector('.container');
+  divContainer.style.backgroundColor = '#f0f0f0'; // Cambiar el color de fondo del contenedor
+
+  // Ejercicio 9: Añadir o eliminar una clase
+  parrafo1.classList.add('highlight'); // Añadir una clase para resaltar el párrafo
+  setTimeout(() => parrafo1.classList.remove('highlight'), 2000); // Eliminarla después de 2 segundos
+
+  // Ejercicio 10: Crear un nodo de texto
+  const textoNuevo = document.createTextNode('Este es un nodo de texto.');
+  document.body.appendChild(textoNuevo);
+
+  // Ejercicio 11: Cambiar el estilo con una propiedad CSS directamente
+  const parrafo3 = document.createElement('p');
+  parrafo3.textContent = 'Este es otro párrafo con un color de fondo.';
+  parrafo3.style.backgroundColor = 'lightgreen';
+  document.body.appendChild(parrafo3);
+
+  // Ejercicio 12: Cambiar el contenido de un atributo
+  boton.setAttribute('title', 'Haz clic para interactuar'); // Modificar el atributo title del botón
+
+  // Ejercicio 13: Modificar el contenido de un atributo en varios elementos
+  const items = document.querySelectorAll('li');
+  items.forEach(item => item.setAttribute('data-id', '123')); // Añadir un atributo personalizado a cada elemento de la lista
+
+  // Ejercicio 14: Añadir un nuevo elemento de lista al DOM
+  const nuevoElemento = document.createElement('li');
+  nuevoElemento.textContent = 'Elemento de lista 3';
+  lista.appendChild(nuevoElemento); // Agregarlo al final de la lista
+
+  // Ejercicio 15: Crear y agregar un enlace a la página
+  const nuevoEnlace = document.createElement('a');
+  nuevoEnlace.setAttribute('href', 'https://www.google.com');
+  nuevoEnlace.textContent = 'Ir a Google';
+  document.body.appendChild(nuevoEnlace);
+
+  // Ejercicio 16: Cambiar el color de fondo de la página
+  document.body.style.backgroundColor = '#e0e0e0'; // Cambiar el color de fondo de la página
+
+  // Ejercicio 17: Alternar una clase con toggle
+  boton.addEventListener('click', () => {
+    document.body.classList.toggle('hidden'); // Alternar la visibilidad de la página
+  });
+
+  // Ejercicio 18: Crear un formulario y añadirlo al DOM
+  const formulario = document.createElement('form');
+  formulario.innerHTML = `
+    <input type="text" placeholder="Escribe algo">
+    <button type="submit">Enviar</button>
+  `;
+  document.body.appendChild(formulario);
+
+  // Ejercicio 19: Eliminar un atributo
+  boton.removeAttribute('disabled'); // Eliminar el atributo "disabled" del botón
+
+  // Ejercicio 20: Añadir un evento al hacer clic en un botón
+  boton.addEventListener('click', () => {
+    alert('Botón presionado!');
+  });
+
+</script>
+
+</body>
+</html>
