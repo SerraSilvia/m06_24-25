@@ -89,3 +89,51 @@ function cuentaLetras(cadena){
 cuentaLetras("banana");
 cuentaLetras("Bangkok");
 cuentaLetras("Las Vegas");
+
+function cuentaPalabras(frase){
+
+    let fraseSplit = frase.split(" ");
+
+    console.log(fraseSplit);
+    document.querySelector("#problema6").textContent += fraseSplit.length;
+    document.querySelector("#problema6").style.color = "blue";
+
+}
+cuentaPalabras("Hola mundo desde JavaScript");
+
+function convierteNumero(lista){
+    let listaNums = lista.toString();
+    let listaJoin= listaNums.split("").join("-");
+
+    document.querySelector("#problema7").textContent += listaJoin;
+    document.querySelector("#problema7").style.color = "blue";
+}
+convierteNumero(12345);
+
+function sonAnagramas(p1, p2){
+    let p2reves= p2.split("").reverse().join("");
+    /*
+    if(p1 === p2reves){
+        console.log("tue");
+        document.querySelector("#problema8").textContent += "true";
+        document.querySelector("#problema8").style.color = "blue";
+    }else{
+        console.log("false");
+        document.querySelector("#problema8").textContent += "false";
+        document.querySelector("#problema8").style.color = "blue";
+    }
+        */
+
+    console.log("false");
+    document.querySelector("#problema8").textContent += (p1 === p2reves);
+    document.querySelector("#problema8").style.color = "blue";
+
+}
+sonAnagramas("roma", "amor");
+
+function eliminaEspacios(frase){
+    let fraseSplit = frase.split(" ").join("");
+    document.querySelector("#problema9").textContent += fraseSplit;
+    document.querySelector("#problema9").style.color = "blue";
+}
+eliminaEspacios("h o l a");
