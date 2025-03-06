@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DAWe1_M06_Bloque1 - Ex01</title>
+    <style>
+      * {
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+        font-size: 10px;
+      }
+
+      h1 {
+        font-size: 2.5rem;
+      }
+
+      h2 {
+        font-size: 2rem;
+      }
+
+      .code,
+      .result {
+        font-family: "Courier New", Courier, monospace;
+        color: grey;
+      }
+
+      .result {
+        color: blue;
+      }
+
+      article {
+        border: 1px solid grey;
+        margin: 5px;
+        padding: 2px;
+      }
+
+      .importante {
+        color: red;
+      }
+
+      .puntuacion {
+        font-style: italic;
+      }
+
+      #tablero {
+        width: 400px;
+        height: 400px;
+        border: 1px solid black;
+        position: relative;
+      }
+
+      .celda {
+        width: 100px;
+        height: 100px;
+        border: 1px solid black;
+        float: left;
+        box-sizing: border-box;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: grey;
+      }
+    </style>
+  </head>
+
+  <body>
+    <h1>DAWe Examen de JavaScript - Sintaxis</h1>
+    <h2>DAWe1 M06-Bloque1 2024-25</h2>
+    <article>
+      <h2>Entrega</h2>
+      <p>
+        Cambia el nombre de este fichero a
+        <span class="importante">ApellidoNombre.html</span>
+      </p>
+    </article>
+
+    <article id="problema1" onload="generarTablero()">
+      <h2>Problema 1: Memory <span class="puntuacion"> 5 puntos </span></h2>
+
+      <div id="p1_resultado"></div>
+      <button onclick="girarCartas()">girar cartas</button>
+    </article>
+
+    <article id="problema2">
+      <h2>
+        Problema 2: Mensaje secreto <span class="puntuacion"> 2 puntos </span>
+      </h2>
+
+      <div id="p2_resultado"></div>
+    </article>
+
+    <article id="problema3">
+      <h2>
+        Problema 3: Calculo IMC <span class="puntuacion"> 3 puntos </span>
+      </h2>
+
+      <form id="formulario">
+        <label>Peso (kg):</label>
+        <input type="number" id="peso"/>
+        <label>Altura (cm):</label>
+        <input type="number" id="altura"/>
+        <button type="button" onclick="calcularIMC()">Calcular IMC</button>
+        <p id="resultado"></p>
+      </form>
+
+      <div id="p3_resultado"></div>
+    </article>
+
+    <script>
+      //Problema1
+      function generarTablero() {
+        let tablero = document.createElement("div");
+        tablero.id = "tablero";
+
+        for (let i = 0; i < 4; i++) {
+          for (let j = 0; j < 4; j++) {
+            let celda = document.createElement("div");
+            celda.classList.add("celda");
+            celda.setAttribute("id", i + "-" + j);
+            tablero.appendChild(celda);
+            celda.style.backgroundColor = "grey";
+          }
+        }
+        document.querySelector("#p1_resultado").appendChild(tablero);
+      }
+
+      generarTablero();
+
+      function generaAleatorios() {
+        let nums_generados = [];
+
+        while (nums_generados.length < 8) {
+          let numsAleat = Math.floor(Math.random() * 8) + 1;
+
+          /* Comprobamos que el numero generado no fue generado previamente */
+          if (nums_generados.indexOf(numsAleat) === -1) {
+            nums_generados.push(numsAleat);
+
+            let num_insertados = 0;
+            while (num_insertados < 2) {
+              let fila = Math.floor(Math.random() * 4);
+              let columna = Math.floor(Math.random() * 4);
+
+              if (
+                document.getElementById(fila + "-" + columna).textContent === ""
+              ) {
+                document.getElementById(fila + "-" + columna).textContent =
+                  numsAleat;
+                num_insertados++;
+              }
+            }
+          }
+        }
+
+        for (let i = 0; i <= 16; i++) {
+          let numsAleat = Math.floor(Math.random() * 8) + 1;
+          console.log(numsAleat);
+        }
+      }
+      generaAleatorios();
+
+      function memory() {}
+
+      function girarCartas() {
+        let celdas = document.querySelectorAll(".celda");
+        for (let celda in celdas) {
+          celdas[celda].style.color = "black";
+          celdas[celda].style.backgroundColor = "lightBlue";
+        }
+      }
+
+      //Problema2
+      function cifrasLetras(texto) {
+        let textoSplit = texto.split("");
+        let solucion = "";
+
+        for (let i in textoSplit) {
+          switch (textoSplit[i].toUpperCase()) {
+            case "A":
+              textoSplit[i] = "4";
+              break;
+            case "E":
+              textoSplit[i] = "3";
+              break;
+            case "I":
+              textoSplit[i] = "1";
+              break;
+            case "O":
+              textoSplit[i] = "0";
+              break;
+            default:
+              textoSplit[i];
+              break;
+          }
+        }
+
+        solucion = textoSplit.join("");
+        document.querySelector("#p2_resultado").textContent +=
+          solucion.toUpperCase();
+        document.querySelector("#p2_resultado").style.color = "blue";
+      }
+
+      //Problema 3
+      function calcularIMC() {
+
+        let peso = parseFloat(document.getElementById("peso").value);
+        let altura = parseFloat(document.getElementById("altura").value);
+        let alturaOk = "false";
+        let pesoOk = "false";
+
+        //comprobar peso válido
+
+        if (isNaN(peso)) {
+          document.querySelector("#p3_resultado").textContent +=
+            "No es un número";
+        } else if (peso < 10 || peso > 120) {
+          document.querySelector("#p3_resultado").textContent +=
+            "No es un peso válido";
+        } else {
+          pesoOk = "true";
+        }
+
+        // comprobar altura válida
+
+        if (isNaN(altura)) {
+          document.querySelector("#p3_resultado").textContent +=
+            "No es un número";
+        } else if (altura < 120 || altura > 210) {
+          document.querySelector("#p3_resultado").textContent +=
+            "No es una altura válida";
+        } else {
+          alturaOk = "true";
+        }
+
+        //si todo está en OK:
+
+        if (pesoOk == "true" && alturaOk == "true") {
+          let alturaCm = altura;
+          let IMC = peso / Math.pow(alturaCm / 100, 2);
+
+          if (IMC < 18.5) {
+            document.querySelector("#p3_resultado").textContent = "Bajo peso";
+            document.querySelector("#p3_resultado").style.color = "yellow";
+          } else if (IMC >= 18.5 && IMC <= 24.9) {
+            document.querySelector("#p3_resultado").textContent = "Peso normal";
+            document.querySelector("#p3_resultado").style.color = "green";
+          } else if (IMC >= 25 && IMC <= 29.9) {
+            document.querySelector("#p3_resultado").textContent = "Sobrepeso";
+            document.querySelector("#p3_resultado").style.color = "orange";
+          } else {
+            document.querySelector("#p3_resultado").textContent = "Obesidad";
+            document.querySelector("#p3_resultado").style.color = "red";
+          }
+        }
+      }
+      calcularIMC(70, 170);
+
+      memory();
+      cifrasLetras(
+        "EstE meNSAjE SirVE para probar COMO NUESTRAS MentES PUedeN hACER cosAS MARAvilloSAS! coSAS ImPreSIONAntES! AL COMIENZO ERA UN pOCO DiFicIL pero ahora, EN esta LINEA tu mente esta LEyenDOLO auTOMAticamente sin SIQUIEra pensarlo."
+      );
+    </script>
+  </body>
+</html>
