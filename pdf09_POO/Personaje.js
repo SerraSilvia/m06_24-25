@@ -59,5 +59,9 @@ function ordenaGuerreros(listaGuerreros){
     //el sort coge el toString
     let guerrerosSorted = listaGuerreros.sort((a,b)=> b.nivel-a.nivel )
 
-    return ordenaGuerreros
+    return guerrerosSorted
 }
+
+console.log(ordenaGuerreros(listaGuerreros));
+console.log(`Los personajes son: $listaGuerreros`)
+console.log("Los personajes son"+ listaGuerreros)
