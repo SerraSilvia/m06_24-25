@@ -150,9 +150,25 @@ const productosPorCategoria = jsonData.reduce((acumulador, prod) => {
 
 console.log(productosPorCategoria);
 
+let total = 0;
 /* 11- Calcular el precio total de todos los productos en stock*/
+jsonData.forEach((prod) => {
+  total += prod.stock * prod.precio
+});
+console.log("total de todos los productos: " +total );
 
+/*12- Calcular el precio con iva del producto en un atributo nuevo*/
+jsonData.forEach(producto => {
+  producto.ivaAplicado = (producto.precio*21/100) + producto.precio;
+});
+console.log(jsonData);
 
-/*12- Multiplicar el precio por el stock de cada producto y sumar los valores totales.*/ 
+/*con map */
+const productosConIva = jsonData.map(producto => {
+  return {
+    ...producto,  // Copia todas las propiedades del producto original
+    ivaAplicado: producto.precio * 21 / 100 + producto.precio  // Calcula y agrega el atributo ivaAplicado
+  };
+});
 
-/*13- Calcular el precio con iva del producto en un atributo nuevo*/
+console.log(productosConIva);
