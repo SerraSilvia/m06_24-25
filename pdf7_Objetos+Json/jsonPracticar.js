@@ -38,7 +38,7 @@ const productos = `[
     ]`;
 console.log(typeof productos);
 
-const jsonData = JSON.parse(productos);
+let jsonData = JSON.parse(productos);
 console.log(typeof jsonData);
 
 
@@ -48,15 +48,12 @@ console.log(typeof jsonData);
 jsonData.forEach(producto => {
     producto.iva = 21;
 });
-
 console.log(jsonData);
-
 
 /*2 -Agrega un atributo descuento con un valor predeterminado de 0.*/
 jsonData.forEach(producto => {
     producto.descuento = 0;
 });
-
 console.log(jsonData);
 
 /* 3 - Modificar el precio de un producto específico:
@@ -67,32 +64,95 @@ jsonData.forEach((prod) => {
     prod.precio = 250;
   }
 });
+console.log(jsonData);
+
+/*4- Filtrar y mostrar solo los productos con un precio superior a un importe dado
+Ejemplo: Mostrar los productos cuyo precio sea mayor a 500.
+Agregar un nuevo producto a la lista*/
+
+const precioSup =  jsonData.filter((prod) => prod.precio>500 );
+console.log(precioSup);
+
+/*5 - Añadir un producto nuevo con id 6 (Monitor 4K, Electrónica, precio: 600, stock: 7).*/
+jsonData.push({
+  id: 6,
+  nombre: "Monitor 4K",
+  categoria: "Electrónica",
+  precio: 600,
+  stock: 7
+});
 
 console.log(jsonData);
 
-/* Filtrar y mostrar solo los productos con un precio superior a un importe dado
+//con objeto definido:
+/*
+const nuevoProducto = {
+  id: 6,
+  nombre: "Monitor 4K",
+  categoria: "Electrónica",
+  precio: 600,
+  stock: 7
+};
+
+// Agregar el objeto al array
+jsonData.push(nuevoProducto);
+
+console.log(jsonData); */
+
+/* 6-Eliminar un producto por su ID:
+Eliminar el producto con id 2 (Auriculares Inalámbricos).*/
+jsonData = jsonData.filter(prod => prod.id !== 2);
+console.log(jsonData);
+
+/*con .findIndex() */
+/*
+const index = jsonData.findIndex(prod => prod.id === 2);
+if (index !== -1) {
+  jsonData.splice(index, 1);
+}
+
+console.log(jsonData);
+ */
+
+/* 7- Ordenar los productos por precio de menor a mayor
+Imprimir la lista ordenada por precio en consola.*/
+jsonData.sort((a, b) => a.precio - b.precio);
+console.log(jsonData);
+
+/* 8- Buscar un producto por su nombre:
+Encontrar el producto cuyo nombre es "Teclado Mecánico RGB".*/
+const buscar = jsonData.find(prod => prod.nombre === "Teclado Mecánico RGB");
+console.log(buscar);
 
 
+/*Actualizar el stock de un producto:
+9 - Reducir en 2 unidades el stock del producto con id 4 (Smartphone 5G).*/
+jsonData.forEach((prod) => {
+  if (prod.id === 4) {
+    prod.stock = prod.stock - 2;
+  }
+});
+console.log(jsonData);
 
-Ejemplo: Mostrar los productos cuyo precio sea mayor a 500.
-Agregar un nuevo producto a la lista
+/*10- Agrupar los productos por categoría:
+Crear un objeto donde las claves sean las categorías y los valores sean arrays con los productos de cada categoría.*/
+const productosPorCategoria = jsonData.reduce((acumulador, prod) => {
+  // Si la categoría no existe en el acumulador, la inicializamos como un array vacío
+  if (!acumulador[prod.categoria]) {
+    acumulador[prod.categoria] = [];
+  }
+  
+  // Añadimos el producto a su categoría correspondiente
+  acumulador[prod.categoria].push(prod);
 
-Añadir un producto nuevo con id 6 (Monitor 4K, Electrónica, precio: 600, stock: 7).
-Eliminar un producto por su ID
+  return acumulador;
+}, {});
 
-Eliminar el producto con id 2 (Auriculares Inalámbricos).
-Ordenar los productos por precio de menor a mayor
+console.log(productosPorCategoria);
 
-Imprimir la lista ordenada por precio en consola.
-Buscar un producto por su nombre
+/* 11- Calcular el precio total de todos los productos en stock*/
 
-Encontrar el producto cuyo nombre es "Teclado Mecánico RGB".
-Actualizar el stock de un producto
 
-Reducir en 2 unidades el stock del producto con id 4 (Smartphone 5G).
-Agrupar los productos por categoría
+/*12- Multiplicar el precio por el stock de cada producto y sumar los valores totales.*/ 
 
-Crear un objeto donde las claves sean las categorías y los valores sean arrays con los productos de cada categoría.
-Calcular el precio total de todos los productos en stock
-
-Multiplicar el precio por el stock de cada producto y sumar los valores totales.*/ 
+/*13- Calcular el precio con iva del producto en un atributo nuevo*/
