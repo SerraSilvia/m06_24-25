@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DAWe1M06UF2 - Ex03</title>
+    <style>
+      * {
+        font-family: system-ui, Verdana, Geneva, Tahoma, sans-serif;
+        font-size: 14px;
+      }
+
+      main {
+        max-width: min(120ch, 100% - 2rem);
+        margin-inline: auto;
+      }
+
+      h1 {
+        font-size: 2.5rem;
+      }
+
+      h2 {
+        font-size: 2rem;
+      }
+
+      .code,
+      .result {
+        font-family: "Courier New", Courier, monospace;
+        color: grey;
+      }
+
+      .result {
+        color: blue;
+      }
+
+      article {
+        margin: 5px;
+        padding: 8px;
+        border: 1px solid grey;
+        border-radius: .25rem;
+      }
+
+      .importante {
+        color: red;
+      }
+
+      .puntuacion {
+        font-style: italic;
+      }
+
+      .codigo {
+        padding: .5rem;
+        background-color: black;
+        border-radius: .25rem;
+        font-family: "Courier New", Courier, monospace;
+        color: white;
+      }
+
+      .usuario {
+        background-color: rgba(128, 128, 128, 0.411);
+        font-family: "Courier New", Courier, monospace;
+        color: black;
+      }
+    </style>
+  </head>
+
+  <body>
+    <main>
+      <h1>DAWe Examen de Gestión de Productos</h1>
+      <h2>DAWe1M06-UF2 2023-24</h2>
+      <article>
+        <h2>Entrega</h2>
+        <p>
+          Cambia el nombre de este fichero a
+          <span class="importante">ApellidoNombre.html</span> y será el fichero
+          inicial de entrada a tu programa
+        </p>
+      </article>
+      <article id="container">
+        <h2>ITB Gestión de Productos</h2>
+        <p>
+          En la empresa ITB se quiere gestionar una pequeña tienda online en la que se pueda agregar productos y realizar compras. Crea una estructura básica que implemente las funcionalidades necesarias, podrás personalizar las clases y añadir más funcionalidades según lo veas necesario.
+        </p>
+
+        <h4>Clase Producto</h4>
+        <p>
+          Contiene los datos esenciales de un producto, tiene: nombre, precio, categoría, stock y descripción.
+        </p>
+        <h4>Clase Pedido</h4>
+        <p>
+          Clase que representa un pedido realizado por un cliente, tiene: fecha de realización, estado, y lista de productos con su cantidad.
+        </p>
+        <h4>Clase Cliente</h4>
+        <p>
+          Contiene los datos del cliente, como nombre, apellido, correo electrónico y teléfono. Además, debe almacenar los pedidos realizados.
+        </p>
+        <h4>Clase Tienda</h4>
+        <p>
+          Esta clase debe almacenar todos los productos y permitir añadir, eliminar o modificar productos. Además, debe permitir realizar un pedido.
+        </p>
+
+        <h4>JSON</h4>
+        <pre class="codigo">
+{
+  "productos": [
+    { "nombre": "Camiseta", "precio": 15.99, "categoria": "Ropa", "stock": 100, "descripcion": "Camiseta de algodón" },
+    { "nombre": "Pantalón", "precio": 25.99, "categoria": "Ropa", "stock": 50, "descripcion": "Pantalón de mezclilla" },
+    { "nombre": "Zapatos", "precio": 40.99, "categoria": "Calzado", "stock": 30, "descripcion": "Zapatos deportivos" },
+    { "nombre": "Auriculares", "precio": 60.99, "categoria": "Electrónica", "stock": 20, "descripcion": "Auriculares inalámbricos" }
+  ],
+  "clientes": [
+    { "nombre": "Carlos", "apellido": "Pérez", "email": "carlos@email.com", "telefono": "1234567890" },
+    { "nombre": "Laura", "apellido": "González", "email": "laura@email.com", "telefono": "9876543210" }
+  ]
+}
+</pre>
+
+        <h4>Implementación <span class="puntuacion">10 puntos (5,1,1,2,1)</span></h4>
+        <ol>
+          <li>
+            Partiendo de un JSON inicial, crea los objetos necesarios para almacenar toda esta información.
+          </li>
+          <li>Añade un nuevo cliente <i>TU</i> con tus datos.</li>
+          <li>Añade un nuevo producto a la tienda.</li>
+          <li>Crea un método o función que muestre los productos disponibles en la tienda.</li>
+          <li>Crea un método o función que realice un pedido, añadiendo productos y cantidades a un pedido de un cliente específico.</li>
+        </ol>
+
+        <h5>Nota: Implementa todo en este fichero.</h5>
+
+        <p></p>
+        <h4>Resultado</h4>
+      </article>
+    </main>
+
+    <script>
+      /***************************************************************************/
+      /**********************             CLASES              ********************/
+      /***************************************************************************/
+
+      class Producto {
+        nombre
+        precio
+        categoria
+        stock
+        descripcion
+
+        constructor(nombre, precio, categoria, stock, descripcion) {
+          this.nombre = nombre
+          this.precio = precio
+          this.categoria = categoria
+          this.stock = stock
+          this.descripcion = descripcion
+        }
+      }
+
+      class Pedido {
+        fecha
+        estado
+        productos
+
+        constructor() {
+          this.fecha = new Date().toLocaleDateString()
+          this.estado = "Pendiente"
+          this.productos = []
+        }
+
+        añadirProducto(producto, cantidad) {
+          if (producto.stock < cantidad) {
+            console.log(`No hay suficiente stock de ${producto.nombre}.`)
+            return
+          }
+          this.productos.push({ producto, cantidad })
+          producto.stock -= cantidad
+        }
+      }
+
+      class Cliente {
+        nombre
+        apellido
+        email
+        telefono
+        pedidos
+
+        constructor(nombre, apellido, email, telefono) {
+          this.nombre = nombre
+          this.apellido = apellido
+          this.email = email
+          this.telefono = telefono
+          this.pedidos = []
+        }
+
+        realizarPedido() {
+          const pedido = new Pedido()
+          this.pedidos.push(pedido)
+          return pedido
+        }
+      }
+
+      class Tienda {
+        productos
+        clientes
+
+        constructor() {
+          this.productos = []
+          this.clientes = []
+        }
+
+        añadirProducto(producto) {
+          this.productos.push(producto)
+        }
+
+        mostrarProductos() {
+          const productos = this.productos.map(p => {
+            return `<p>${p.nombre} - ${p.precio}€</p>`
+          }).join("")
+          return productos
+        }
+
+        registrarCliente(cliente) {
+          this.clientes.push(cliente)
+        }
+
+        getCliente(email) {
+          return this.clientes.find(c => c.email === email)
+        }
+      }
+
+      /***************************************************************************/
+      /**********************         METODOS/FUNCIONES       ********************/
+      /***************************************************************************/
+
+      const datosTiendaJson = `{
+        "productos": [
+          { "nombre": "Camiseta", "precio": 15.99, "categoria": "Ropa", "stock": 100, "descripcion": "Camiseta de algodón" },
+          { "nombre": "Pantalón", "precio": 25.99, "categoria": "Ropa", "stock": 50, "descripcion": "Pantalón de mezclilla" },
+          { "nombre": "Zapatos", "precio": 40.99, "categoria": "Calzado", "stock": 30, "descripcion": "Zapatos deportivos" },
+          { "nombre": "Auriculares", "precio": 60.99, "categoria": "Electrónica", "stock": 20, "descripcion": "Auriculares inalámbricos" }
+        ],
+        "clientes": [
+          { "nombre": "Carlos", "apellido": "Pérez", "email": "carlos@email.com", "telefono": "1234567890" },
+          { "nombre": "Laura", "apellido": "González", "email": "laura@email.com", "telefono": "9876543210" }
+        ]
+      }`
+
+      const { productos, clientes } = JSON.parse(datosTiendaJson)
+
+      const tienda = new Tienda()
+
+      productos.map(({ nombre, precio, categoria, stock, descripcion }) => {
+        tienda.añadirProducto(new Producto(nombre, precio, categoria, stock, descripcion))
+      })
+
+      clientes.map(({ nombre, apellido, email, telefono }) => {
+        tienda.registrarCliente(new Cliente(nombre, apellido, email, telefono))
+      })
+
+      // Ejercicio 2
+      registrarCliente("Juan", "Pérez", "juan@email.com", "555123456")
+
+      // Ejercicio 3
+      añadirProductoTienda("Mochila", 35.99, "Accesorios", 50, "Mochila escolar")
+
+      // Ejercicio 4
+      document.getElementById("container").innerHTML = tienda.mostrarProductos()
+
+      // Ejercicio 5
+      realizarPedido("juan@email.com", [
+        { nombre: "Camiseta", cantidad: 2 },
+        { nombre: "Zapatos", cantidad: 1 }
+      ])
+
+      function registrarCliente(nombre, apellido, email, telefono) {
+        const cliente = new Cliente(nombre, apellido, email, telefono)
+        tienda.registrarCliente(cliente)
+        console.log(`Cliente ${nombre} ${apellido} registrado con éxito.`)
+      }
+
+      function añadirProductoTienda(nombre, precio, categoria, stock, descripcion) {
+        const producto = new Producto(nombre, precio, categoria, stock, descripcion)
+        tienda.añadirProducto(producto)
+        console.log(`Producto ${nombre} añadido a la tienda.`)
+      }
+
+      function realizarPedido(email, productosPedido) {
+        const cliente = tienda.getCliente(email)
+        if (!cliente) {
+          console.error(`Cliente no encontrado: ${email}`)
+          return
+        }
+
+        const pedido = cliente.realizarPedido()
+        productosPedido.map(({ nombre, cantidad }) => {
+          const producto = tienda.productos.find(p => p.nombre === nombre)
+          if (!producto) {
+            console.error(`Producto no encontrado: ${nombre}`)
+            return
+          }
+          pedido.añadirProducto(producto, cantidad)
+        })
+        console.log(`Pedido realizado para el cliente ${cliente.nombre} ${cliente.apellido}.`)
+      }
+    </script>
+  </body>
+</html>
