@@ -35,3 +35,25 @@ document.getElementById("closeWindow").addEventListener("click", () => {
         alert("La finestra ja està tancada o no existeix.");
     }
 });
+
+
+const button = document.querySelector("#b1");
+button.addEventListener("click", () => 
+  alert("Has trobat a Wally!!"));
+
+const dobleClick = document.querySelector("img");
+dobleClick.addEventListener("dblclick", () => {
+  alert("Has fet doble clic a la imatge!");
+});
+
+const pressEnter = document.querySelector("img");
+pressEnter.addEventListener("keydown", (event) => {
+    if (event.key === "Enter") {
+      alert("Has premut Enter sobre la imatge!");
+    }
+  });
+  
+  const moureRatoliSobreImg = document.querySelector("img");
+  moureRatoliSobreImg.addEventListener("mousemove", (event) => {
+    console.log(`Posición X: ${event.offsetX}, Posición Y: ${event.offsetY}`);
+  });
