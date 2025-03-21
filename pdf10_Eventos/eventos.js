@@ -1,47 +1,37 @@
+let novaFinestra;
 
-let obrir = document.querySelector("#of");
-let finestra;
+document.getElementById("openWindow").addEventListener("click", () => {
+    // Obre una nova finestra
+    novaFinestra = window.open(
+        "", 
+        "NovaFinestra", 
+        "width=500,height=200,top=200,left=100"
+    );
 
-const abrir = window.open("", "finestraSilvia", "width = 500px , height = 200px , left=100px , top=200px");
-if (finestra) {
-    finestra.document.write("<h1>Hola</h1>")
-}
+    // Escrivim un títol a la finestra
+    if (novaFinestra) {
+        novaFinestra.document.write("<h1>Hola</h1>");
+    } else {
+        alert("No s'ha pogut obrir la finestra. Pot ser que estigui bloquejada pel navegador.");
+    }
+});
 
+document.getElementById("moveWindow").addEventListener("click", () => {
+    // Moure la finestra si existeix
+    if (novaFinestra) {
+        novaFinestra.moveBy(-50, 50); // Mou 300 px avall i 100 px a l'esquerra
+        novaFinestra.focus(); 
+    } else {
+        alert("Primer has d'obrir la finestra!");
+    }
+});
 
-
-function moure() {
-    let moure = document.querySelector("#mf");
-    moure.addEventListener("click", () => {
-        if (finestra) {
-            finestra = window.moveBy(-50, -50);
-            finestra.focus()
-        }
-    })
-}
-
-/*
-
-function open() {
-
-    let obrir = document.querySelector("#of");
-    let finestra;
-
-    obrir.addEventListener("click", () => {
-        window.open("", "finestraSilvia", "width = 500px , height = 200px , left=100px , top=200px");
-        if (finestra) {
-            finestra.document.write("<h1>Hola</h1>")
-        }
-    })
-}
-
-function moure(){
-    let moure = document.querySelector("#mf");
-    moure.addEventListener("click", () => {
-        if(finestra){
-            finestra=window.moveBy(-50, -50);
-            finestra.focus()
-        }
-    })
-}
-
-*/
+document.getElementById("closeWindow").addEventListener("click", () => {
+    // Tancar la finestra si existeix
+    if (novaFinestra) {
+        novaFinestra.close();
+        novaFinestra = null;
+    } else {
+        alert("La finestra ja està tancada o no existeix.");
+    }
+});
