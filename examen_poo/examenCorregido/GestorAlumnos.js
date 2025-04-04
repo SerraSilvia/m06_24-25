@@ -42,14 +42,6 @@ export class GestorAlumnos {
         }
     }
 
-
-    // Devuelve los alumnos ordenados por su media.
-    mostrarAlumnosOrdenados(alumno){
-        let mediaOrdenada = alumnos.sort((a,b)=> b.alumno.media - a.alumno.media);
-        console.log(mediaOrdenada);
-        return mediaOrdenada;
-    }
-
     mostrarAlumnosOrdenados() {
         // Convertimos el Map a un array para ordenarlos
         let mediaOrdenada = Array.from(this.alumnos.values()).sort((a, b) => b.media - a.media);
@@ -57,9 +49,9 @@ export class GestorAlumnos {
         return mediaOrdenada;
     }
 
-    listarAlumnos(alumno) {  // Devuelve los alumnos ordenados por el nombreCompleto optativo filtrar Daw/Dam
-        return this.alumnos;
-      }
+      listarAlumnos() {
+        return Array.from(this.alumnos.values());  // Retorna todos los alumnos como un array
+    }
       
 
 }

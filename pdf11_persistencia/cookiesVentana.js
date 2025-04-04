@@ -21,3 +21,20 @@ document.addEventListener("DOMContentLoaded", () => {
         botonGuardar.addEventListener('click', crearCookies)
     }
 });
+
+/*LOCAL STORAGE*/
+
+localStorage.setItem('alumno' + localStorage.length, alumnoSerialized);
+localStorage.getItem(key)
+localStorage.removeItem(key)
+localStorage.clear()
+localStorage.key(0)
+
+const storedUserData = localStorage.getItem('user')
+
+if (storedUserData) {
+  const userData = JSON.parse(storedUserData)
+  // You can use userData here...
+} else {
+  console.log('User data not found in local storage')
+}
