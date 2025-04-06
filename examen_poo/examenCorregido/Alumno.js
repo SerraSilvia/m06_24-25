@@ -11,13 +11,13 @@ export class Alumno {
     notas;
     media;
 
-    constructor(nombre, apellidos, fechaNacimiento, email, ciclo) {
+    constructor(nombre, apellidos, fechaNacimiento, email, ciclo, notas) {
         this.nombre = nombre;
         this.apellidos = apellidos
         this.fechaNacimiento = new Date(fechaNacimiento);
         this.email = email;
         this.ciclo = ciclo;
-        this.notas = [];
+        this.notas = notas;
         this.media= this.calcularMedia();
     }
 
@@ -37,13 +37,12 @@ export class Alumno {
     }
 
     toString(){
-        return `${this.nombre}  ${this.apellidos}`
+        return `${this.nombre}  ${this.apellidos} media:[${this.media}]`
     }
 
     infoAlumno(){
-           return `${this.nombre}  ${this.apellidos} | edad: ${this.calcularEdad()} | ciclo: ${this.getCiclo()} | media: ${this.calcularMedia()}`
+           return `${this.nombre}  ${this.apellidos} | edad: ${this.calcularEdad()} | ciclo: ${this.ciclo} | media: ${this.calcularMedia()}`
     }
      
-
 }
 

@@ -16,8 +16,6 @@ const alumnosJSON = `[
     {"nombre": "Pablo", "apellidos": "Gómez Ortega", "fechaNacimiento": "2003-10-05", "email": "pablo.gomez@email.com", "ciclo": "DAW", "notas": [7, 8, 7, 6] }
 ]`;
 
-const JSONData = JSON.parse(alumnosJSON);
-console.log(JSONData);
 
 function muestraResultadoDOM(identificador, resultado) {
     let content = document.getElementById(identificador);
@@ -26,41 +24,54 @@ function muestraResultadoDOM(identificador, resultado) {
     content.appendChild(p);
 }
 
-var listadoAlumnos = new GestorAlumnos();
+function init() {
+  var listadoAlumnos = new GestorAlumnos();
 
+  const JSONData = JSON.parse(alumnosJSON);
+console.log(JSONData);
 
-for (let alumno of JSONData) {
-    listadoAlumnos.agregarAlumno(
-      new Alumno(
-        alumno.nombre,
-        alumno.apellidos,
-        alumno.fechaNacimiento,
-        alumno.email,
-        alumno.ciclo,
-        alumno.notas
-      )
-    );
-  }
+  for (let alumno of JSONData) {
+      listadoAlumnos.agregarAlumno(
+        new Alumno(
+          alumno.nombre,
+          alumno.apellidos,
+          alumno.fechaNacimiento,
+          alumno.email,
+          alumno.ciclo,
+          alumno.notas
+        )
+      );
+    }
+  //mostrar lista alumnos ordenados alfabéticamente
+  let alumnosOrdenadosNombre = listadoAlumnos.mostrarAlumnosOrdenadosNombre();
 
-  var alumno = listadoAlumnos.buscarAlumno(alumno.nombre);
+    muestraResultadoDOM('#resultado', alumnosOrdenadosNombre );
 
-  if (alumno != -1) {
-    return alumno;
-  }else {
-    console.log("El usuario no existe");
-  }
-/*
-  function crearAlumno(nombre, apellidos, fechaNacimiento, email, ciclo, notas) {
-    if (listadoAlumnos.getApellidos(apellidos)) {
-      console.log("alumno existente, no se puede crear");
-      return 
+      //mostrar lista alumnos ordenados por media
+  const alumnosOrdenadosMedia = listadoAlumnos.mostrarAlumnosOrdenadosMedia();
+
+  muestraResultadoDOM('#resultado', alumnosOrdenadosMedia );
+
+    var alumno = listadoAlumnos.buscarAlumnoMail(JSONData[0].email);
+    //var alumno = listadoAlumnos.buscarAlumnoMail('sergio.hernandez@email.com');
+  
+    if (alumno) {
+      muestraResultadoDOM('#resultado', alumno.infoAlumno());
+    }else {
+      console.log("El usuario no existe");
     }
 
-    const alumno = new Alumno(nombre, apellidos, fechaNacimiento, email, ciclo, notas);
+    listadoAlumnos.eliminarAlumno(JSONData[0].email);
     
-    listadoAlumnos.agregarAlumno(alumno);
-    console.log("alumno registrado");
+    alumnosOrdenadosNombre = listadoAlumnos.mostrarAlumnosOrdenadosNombre();
+
+    muestraResultadoDOM('#resultado', alumnosOrdenadosNombre );
 }
-    */
+
+init();
+
+
+
+
 
 

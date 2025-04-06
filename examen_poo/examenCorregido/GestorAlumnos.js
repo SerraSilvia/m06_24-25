@@ -10,7 +10,7 @@ export class GestorAlumnos {
 
     agregarAlumno(alumnoNuevo) {
 
-        if(this.alumnos.find(alumno => alumno.email == alumnoNuevo.email) == -1){
+        if(!this.alumnos.find(alumno => alumno.email == alumnoNuevo.email)){
             this.alumnos.push(alumnoNuevo);            
         }
 
@@ -30,7 +30,7 @@ export class GestorAlumnos {
 
     buscarAlumnoMail(email) {
         let alumnoBuscar = this.alumnos.find(alumno => alumno.email == email);
-        return alumnoBuscar != -1 ? alumnoBuscar : null;  // Retorna null si no encuentra el alumno, -1 es un true en un if
+        return alumnoBuscar ? alumnoBuscar : null;  // Retorna null si no encuentra el alumno, -1 es un true en un if
     }
 
     buscarAlumnoNombreApellidos(nombre, apellidos) {
@@ -47,15 +47,20 @@ export class GestorAlumnos {
      this.alumnos = this.alumnos.filter(alumno => alumno.email !== email);
     }
 
-    mostrarAlumnosOrdenados() {
-        // Convertimos el Map a un array para ordenarlos
-        let mediaOrdenada = Array.from(this.alumnos.values()).sort((a, b) => b.media - a.media);
+    mostrarAlumnosOrdenadosNombre() {
+        const nombresSort = this.alumnos.sort((a, b) => a.nombre.localeCompare(b.nombre));
+        console.log(nombresSort);
+        return nombresSort;
+    }
+
+    mostrarAlumnosOrdenadosMedia() {
+        let mediaOrdenada = this.alumnos.sort((a, b) => b.media - a.media);
         console.log(mediaOrdenada);
         return mediaOrdenada;
     }
 
       listarAlumnos() {
-        return Array.from(this.alumnos.values());  // Retorna todos los alumnos como un array
+        return this.alumnos;  // Retorna todos los alumnos como un array
     }
       
 
