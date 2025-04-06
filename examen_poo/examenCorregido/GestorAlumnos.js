@@ -5,23 +5,36 @@ export class GestorAlumnos {
     alumnos;
 
     constructor(){
-        this.alumnos = new Map();
+        this.alumnos = [];
     }
 
-    agregarAlumno(alumno) {
-        this.alumnos.set(alumno.email, alumno);
+    agregarAlumno(alumnoNuevo) {
+
+        if(this.alumnos.find(alumno => alumno.email == alumnoNuevo.email) == -1){
+            this.alumnos.push(alumnoNuevo);            
+        }
+
     }
+
+    //agregar alumno bien hecho:
+
+    /*agregarAlumno(alumnoNuevo) {
+
+        if(this.buscarAlumnoMail(alumnoNuevo.email)){
+            this.alumnos.push(alumnoNuevo);            
+        }
+
+    }*/
 
       // Devuelve un alumno por su nombre y apellidos.
 
-
     buscarAlumnoMail(email) {
-        let alumnoBuscar = this.alumnos.get(email);
-        return alumnoBuscar ? alumnoBuscar : null;  // Retorna null si no encuentra el alumno
+        let alumnoBuscar = this.alumnos.find(alumno => alumno.email == email);
+        return alumnoBuscar != -1 ? alumnoBuscar : null;  // Retorna null si no encuentra el alumno, -1 es un true en un if
     }
 
     buscarAlumnoNombreApellidos(nombre, apellidos) {
-        for (let alumno of this.alumnos.values()) {
+        for (let alumno of this.alumnos) {
             if (alumno.nombre === nombre && alumno.apellidos === apellidos) {
                 return alumno;
             }
@@ -29,17 +42,9 @@ export class GestorAlumnos {
         return null;  // Si no se encuentra, retorna null
     }
     
-
       // Borra un alumno del sistema.
     eliminarAlumno(email) {
-        let alumnoBuscar = this.alumnos.get(email);
-
-        if (alumnoBuscar) {
-            this.alumnos.delete(email);  // Eliminamos el alumno usando el email como clave
-            console.log(`Alumno con email ${email} eliminado correctamente.`);
-        } else {
-            console.log("Usuario no existente.");
-        }
+     this.alumnos = this.alumnos.filter(alumno => alumno.email !== email);
     }
 
     mostrarAlumnosOrdenados() {

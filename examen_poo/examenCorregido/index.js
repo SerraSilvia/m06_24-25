@@ -26,10 +26,10 @@ function muestraResultadoDOM(identificador, resultado) {
     content.appendChild(p);
 }
 
-var listadoAlumnos = new GestorAlumnos
+var listadoAlumnos = new GestorAlumnos();
 
 
-for (let alumno of JSONData.alumnos) {
+for (let alumno of JSONData) {
     listadoAlumnos.agregarAlumno(
       new Alumno(
         alumno.nombre,

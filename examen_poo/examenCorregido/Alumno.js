@@ -11,25 +11,14 @@ export class Alumno {
     notas;
     media;
 
-    constructor(nombre, apellidos, fechaNacimiento, email, ciclo,media) {
+    constructor(nombre, apellidos, fechaNacimiento, email, ciclo) {
         this.nombre = nombre;
         this.apellidos = apellidos
-        this.fechaNacimiento = fechaNacimiento;
+        this.fechaNacimiento = new Date(fechaNacimiento);
         this.email = email;
         this.ciclo = ciclo;
         this.notas = [];
         this.media= this.calcularMedia();
-    }
-
-    get ciclo() {
-        return this.ciclo;
-    }
-    get apellidos(){
-        return this.apellidos;
-    }
-
-    get email(){
-        return this.email;
     }
 
     calcularMedia() {
