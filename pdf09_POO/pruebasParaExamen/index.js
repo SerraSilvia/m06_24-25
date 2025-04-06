@@ -43,7 +43,7 @@ function init() {
 
     // Mostrar lista de productos ordenados alfabéticamente por nombre
     let productosOrdenadosNombre = gestorProductos.mostrarProductosOrdenadosPorNombre();
-    muestraResultadoDOM('#resultado', productosOrdenadosNombre.map(p => p.toString()).join('<br>'));
+    muestraResultadoDOM('#resultado', productosOrdenadosNombre);
 
     // Mostrar lista de productos ordenados por precio
     const productosOrdenadosPrecio = gestorProductos.mostrarProductosOrdenadosPorPrecio();
