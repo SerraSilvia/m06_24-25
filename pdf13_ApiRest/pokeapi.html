@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API REST</title>
+    <script src="ApiRest.js" defer></script>
+</head>
+
+<body onload="init()">
+    <div id="pkmn"></div>
+    <button id="masPkmn">Descubre Pokemon</button>
+
+    <script>
+        function init() {
+            document.getElementById("masPkmn").addEventListener("click", conectaAPI);
+        }
+
+        function conectaAPI() {
+            const nombres = ['sprigatito', 'breloom', 'chikorita', 'bellossom', 'servine', 'petilil', 'oddish', 'maractus', 'florges', 'roselia'];
+
+            nombres.forEach(function (nombre) {
+                fetch(`https://pokeapi.co/api/v2/pokemon/${nombre}`)
+                    .then(function (res) {
+                        return res.json();
+                    })
+                    .then(function (json) {
+                        muestraPkmn(json);
+                    });
+            });
+        }
+
+
+        function muestraPkmn(pokemon) {
+            let div = document.getElementById("pkmn");
+
+            let p = document.createElement("p");
+            p.textContent = `Nombre: ${pokemon.name},   Número Pokédex: ${pokemon.id}`;
+
+            // Crear la imagen de la parte frontal
+            let imgFront = document.createElement("img");
+            imgFront.src = pokemon.sprites.front_default;
+            imgFront.alt = `${pokemon.name} Front`;
+
+            // Crear la imagen de la parte trasera
+            let imgBack = document.createElement("img");
+            imgBack.src = pokemon.sprites.back_default;
+            imgBack.alt = `${pokemon.name} Back`;
+
+            // Agregar el texto y las imágenes al contenedor
+            div.appendChild(p);
+            div.appendChild(imgFront);
+            div.appendChild(imgBack);
+        }
+
+    </script>
+</body>
+
+</html>
