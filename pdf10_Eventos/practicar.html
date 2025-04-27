@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Ejemplo Completo con nuevaVentana</title>
+</head>
+<body>
+
+<button id="abrirVentana">Abrir Ventana</button>
+<button id="moverVentana">Mover Ventana</button>
+<button id="redimensionarVentana">Redimensionar Ventana</button>
+<button id="cerrarVentana">Cerrar Ventana</button>
+
+<script>
+  let nuevaVentana; // Variable para guardar la ventana abierta
+
+  // Botón para abrir la ventana
+  document.getElementById('abrirVentana').addEventListener('click', function() {
+    nuevaVentana = window.open(
+      'https://www.example.com', // URL que abre
+      'ventanaEjemplo',          // Nombre interno
+      'width=400,height=300,left=200,top=100,scrollbars=yes,resizable=yes'
+    );
+  });
+
+  // Botón para mover la ventana
+  document.getElementById('moverVentana').addEventListener('click', function() {
+    if (nuevaVentana) {
+      nuevaVentana.moveTo(100, 100); // Mueve la ventana a (100, 100)
+    } else {
+      alert('Primero debes abrir la ventana.');
+    }
+  });
+
+  // Botón para redimensionar la ventana
+  document.getElementById('redimensionarVentana').addEventListener('click', function() {
+    if (nuevaVentana) {
+      nuevaVentana.resizeTo(800, 600); // Cambia su tamaño a 800x600
+    } else {
+      alert('Primero debes abrir la ventana.');
+    }
+  });
+
+  // Botón para cerrar la ventana
+  document.getElementById('cerrarVentana').addEventListener('click', function() {
+    if (nuevaVentana) {
+      nuevaVentana.close(); // Cierra la ventana
+    } else {
+      alert('Primero debes abrir la ventana.');
+    }
+  });
+
+</script>
+
+</body>
+</html>
