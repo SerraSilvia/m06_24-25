@@ -10,6 +10,7 @@
     <h1>Exercici de control de finestra</h1>
     <button id="openWindow">Obrir finestra</button>
     <button id="moveWindow">Moure finestra</button>
+    <button id="redimWindow">Redimensiona finestra</button>
     <button id="closeWindow">Tancar finestra</button>
     <script src="ex1.js" defer></script>
 </section>
@@ -19,5 +20,48 @@
     <img src="../assets/buscaWally3.webp">
     <button id="b1" >Trobat</button>
 </section>
+
+
+
+<script>
+  let nuevaVentana; // Variable para guardar la ventana abierta
+
+  // Botón para abrir la ventana
+  document.getElementById('openWindow').addEventListener('click', function() {
+    nuevaVentana = window.open(
+      'https://www.example.com', // URL que abre
+      'ventanaEjemplo',          // Nombre interno
+      'width=400,height=300,left=200,top=100,scrollbars=yes,resizable=yes'
+    );
+  });
+
+  document.getElementById('moveWindow').addEventListener('click', function() {
+    if (nuevaVentana) {
+      nuevaVentana.moveTo(100, 100); // Mueve la ventana a (100, 100)
+    } else {
+      alert('Primero debes abrir la ventana.');
+    }
+  });
+
+    // Botón para redimensionar la ventana
+    document.getElementById('redimWindow').addEventListener('click', function() {
+    if (nuevaVentana) {
+      nuevaVentana.resizeTo(800, 800); // Cambia su tamaño a 800x600
+    } else {
+      alert('Primero debes abrir la ventana.');
+    }
+  });
+
+  // Botón para cerrar la ventana
+  document.getElementById('closeWindow').addEventListener('click', function() {
+    if (nuevaVentana) {
+      nuevaVentana.close(); // Cierra la ventana
+    } else {
+      alert('Primero debes abrir la ventana.');
+    }
+  });
+
+</script>
+
 </body>
 </html>
